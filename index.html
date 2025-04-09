@@ -29,7 +29,7 @@
             }
 
             try {
-                const response = await fetch("https://us-central1-YOUR_PROJECT_ID.cloudfunctions.net/capturePaypalOrder", {
+                const response = await fetch("https://us-central1-paypal-game-demo.cloudfunctions.net/capturePaypalOrder", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ orderId: token }),

@@ -21,10 +21,11 @@
     <script>
         async function confirmOrder() {
             const params = new URLSearchParams(window.location.search);
-            const token = params.get("token");
+            const token = params.get("token"); // The PayPal order ID
+            const uid = params.get("uid"); // The User ID passed from Unity
 
-            if (!token) {
-                document.getElementById("status").textContent = "Error: No token found in URL.";
+            if (!token || !uid) {
+                document.getElementById("status").textContent = "Error: Missing token or UID in URL.";
                 return;
             }
 
@@ -32,7 +33,7 @@
                 const response = await fetch("https://us-central1-flavorfuljourneys-6e7b1.cloudfunctions.net/capturePaypalOrder", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ orderId: token }),
+                    body: JSON.stringify({ orderId: token, uid: uid }), // Send both orderId and uid
                 });
 
                 if (!response.ok) throw new Error("Payment capture failed");

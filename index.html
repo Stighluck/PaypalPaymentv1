@@ -23,6 +23,7 @@
             const params = new URLSearchParams(window.location.search);
             const token = params.get("token"); // The PayPal order ID
             const uid = params.get("uid"); // The User ID passed from Unity
+            console.log("URL Params:", token, uid);
 
             if (!token || !uid) {
                 document.getElementById("status").textContent = "Error: Missing token or UID in URL.";
